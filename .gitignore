@@ -1,0 +1,6 @@
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore OAuth token file
+/token.json
+/use.txt

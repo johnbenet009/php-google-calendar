@@ -20,7 +20,7 @@ This PHP project allows you to book and read appointments from Google Calendar. 
 ### Steps to Set Up Google Calendar API with a Google Cloud Project
 
 1. **Create a Google Cloud Project**
-   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   - Go to the https://console.cloud.google.com.
    - Click *Create Project* or select an existing project.
    - Enter a project name and click *Create*.
 
@@ -47,7 +47,7 @@ This PHP project allows you to book and read appointments from Google Calendar. 
    - Download the client credentials JSON file and save it as `credentials.json`.
 
 5. **Get Calendar ID**
-   - Open [Google Calendar](https://calendar.google.com/).
+   - Open https://calendar.google.com.
    - Locate your calendar under *My calendars*.
    - Click the three dots ... > *Settings and sharing*.
    - Scroll to *Integrate calendar*.
@@ -150,6 +150,7 @@ This will create an event on your Google Calendar at the specified time and date
 - Make sure the calendar is shared with the appropriate users and service accounts.
 - You can modify the available time slots in the code as needed.
 
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for details. 

@@ -85,7 +85,8 @@ To get API key you must sign-in for the first time so open Terminal
 ```bash
 curl http://your-domain.com/demo.php
 ```
-This will give you an auth url, click on it, sign-in with your google calendar gmail account, copy the response code back to the terminal and hit Enter
+This will give you an auth url, click on it, sign-in with your google calendar gmail account,  After auth, you'll be redirected to a url like: http://your-domain.com/calendar.php?code=JAX5RI5bzv5L67b-****-Eqv-Q&scope=https://www.googleapis.com/auth/calendar
+Copy the url code value back to your terminal and hit Enter.
 
 
 #### Getting Available Time Slots

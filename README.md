@@ -1,4 +1,3 @@
-```markdown
 # PHP Google Calendar Integration
 
 ## Manage Google Calendar Appointments with PHP

@@ -160,4 +160,3 @@ curl -X POST "http://your-domain.com/calendar.php" -H "Content-Type: application
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-```

@@ -44,6 +44,59 @@ Easily book and read appointments from Google Calendar using this lightweight PH
 
 ---
 
+
+
+### Steps for Initial Authentication
+
+To perform the initial authentication and generate the `token.json` file for the Google Calendar API, follow these steps:
+
+1. **Ensure the `credentials.json` file is available:**
+   - Download the `credentials.json` file from the Google Cloud Console after setting up the API and OAuth2 consent screen.
+   - Place this file in the same directory as your script.
+
+2. **Run the script in CLI mode:**
+   - Run the `php calendar.php` 
+   
+   ```bash  
+   php calendar.php 
+   ``` 
+   
+   script using the PHP CLI (Command Line Interface). This is necessary because it prompts you to input an authorization code, which is not possible in a browser-based setup.
+
+3. **Follow the authentication flow:**
+   - When the script runs, it will detect that no `token.json` file exists and generate an authentication URL.
+   - Open the URL in a browser to log in to your Google account and authorize the application.
+
+4. **Get the authorization code:**
+   - After authorizing, Google will provide an authorization codein the callback url as ?code=****. Copy this code.
+
+5. **Input the code:**
+   - Paste the code into the terminal where the script is running. The script will exchange the code for an access token and refresh token, then save them in the `token.json` file.
+
+6. **Verify:**
+   - The script should now be able to make authenticated requests to the Google Calendar API.
+
+**Example of Running the Script:**
+
+Save the `calendar.php` file and run it in the terminal:
+
+```bash
+php calendar.php
+```
+
+If no `token.json` exists, you will see an output like this:
+
+```text
+Auth URL:
+https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=...
+Enter verification code:
+```
+
+Copy the URL, paste it into your browser, and complete the authorization process. Copy the code provided by Google and paste it into the terminal. The script will create a `token.json` file in the same directory, which will be used for future authenticated requests.
+
+---
+
+
 ### Step 2: Project Setup  
 
 1. **Clone the Repository**  

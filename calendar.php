@@ -112,9 +112,11 @@ function getAvailableTimeSlots($date)
     ];
 }
 
-function saveBookedTimeSlot($date, $time)
-{
-    // Now this function is not required, as booking will be done directly on Google Calendar
+if (php_sapi_name() === 'cli') {
+    // CLI mode: Perform initial authentication and token generation
+    getClient();
+    echo "Token generated successfully.\n";
+    exit;
 }
 
 // Handle requests

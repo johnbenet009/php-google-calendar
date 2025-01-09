@@ -1,163 +1,136 @@
-# php-google-calendar
+# PHP Google Calendar Integration  
 
-## Book and Read Google Calendar Appointments Using PHP the Simplest Way
+## Manage Google Calendar Appointments with PHP  
 
-This PHP project allows you to book and read appointments from Google Calendar. It provides an easy-to-use API integration for reading available time slots and creating calendar events.
+Easily book and read appointments from Google Calendar using this lightweight PHP integration. It enables seamless scheduling and appointment management with a simple API.  
 
-## Features
-- Retrieve available time slots from Google Calendar.
-- Create new events on Google Calendar.
-- Simplify the process of managing appointments through Google Calendar using PHP.
+## Features  
+- Fetch available time slots from Google Calendar.  
+- Create new events on your Google Calendar.  
+- Streamline appointment management with minimal setup.  
 
-## Requirements
-- PHP 7.4 or higher
-- Composer for dependency management
-- A Google Cloud Project with the Google Calendar API enabled
-- OAuth 2.0 credentials (for accessing and modifying calendar events)
+## Requirements  
+- PHP 7.4+  
+- Composer (Dependency Manager)  
+- Google Cloud Project with Google Calendar API enabled  
+- OAuth 2.0 credentials  
 
-## Setup Instructions
+---
 
-### Steps to Set Up Google Calendar API with a Google Cloud Project
+## Setup  
 
-1. **Create a Google Cloud Project**
-   - Go to the https://console.cloud.google.com.
-   - Click *Create Project* or select an existing project.
-   - Enter a project name and click *Create*.
+### Step 1: Google Calendar API Setup  
 
-2. **Enable Google Calendar API**
-   - In the Cloud Console, navigate to *APIs & Services > Library*.
-   - Search for *Google Calendar API*.
-   - Click *Enable*.
+1. **Create a Google Cloud Project**  
+   - Visit [Google Cloud Console](https://console.cloud.google.com).  
+   - Create or select an existing project.  
 
-3. **Create Credentials**
-   - Go to *APIs & Services > Credentials*.
-   - Click *Create Credentials > API Key*.
-   - Copy the API key.
-   - Click *Edit* on the API key to restrict it:
-     - Set application restrictions to *HTTP referrers*.
-     - Add your domain to allowed referrers.
-     - Under *API restrictions*, select *Google Calendar API*.
+2. **Enable Google Calendar API**  
+   - Navigate to *APIs & Services > Library*.  
+   - Search for and enable *Google Calendar API*.  
 
-4. **Set Up OAuth 2.0 (for write access)**
-   - In *Credentials*, click *Create Credentials > OAuth 2.0 Client ID*.
-   - Choose *Web application*.
-   - Add authorized JavaScript origins (your domain).
-   - Add authorized redirect URIs.
-   - Click *Create*.
-   - Download the client credentials JSON file and save it as `credentials.json`.
+3. **Generate API Key**  
+   - Go to *APIs & Services > Credentials*.  
+   - Select *Create Credentials > API Key*.  
+   - Restrict the key for *HTTP Referrers* and select *Google Calendar API*.  
 
-5. **Get Calendar ID**
-   - Open https://calendar.google.com.
-   - Locate your calendar under *My calendars*.
-   - Click the three dots ... > *Settings and sharing*.
-   - Scroll to *Integrate calendar*.
-   - Copy the *Calendar ID* (usually the email address of the calendar).
+4. **Set Up OAuth 2.0 Credentials**  
+   - In *Credentials*, click *Create Credentials > OAuth 2.0 Client ID*.  
+   - Configure redirect URIs and download the `credentials.json` file.  
 
-6. **Configure Calendar Sharing**
-   - In Calendar settings:
-     - Go to *Share with specific people*.
-     - Add your service account email (from the OAuth 2.0 setup).
-     - Grant *Make changes to events* permission.
+5. **Calendar Configuration**  
+   - Access your Google Calendar's *Settings and Sharing*.  
+   - Share the calendar with the OAuth service account and provide *Make changes to events* permission.  
 
-### Setting Up the Project
+---
 
-1. **Clone the Repository**
-   Clone the repository to your local machine or server:
+### Step 2: Project Setup  
 
-   ```bash
-   git clone https://github.com/your-username/php-google-calendar.git
-   cd php-google-calendar
-   ```
+1. **Clone the Repository**  
+   ```bash  
+   git clone https://github.com/johnbenet009/php-google-calendar.git  
+   cd php-google-calendar  
+   ```  
 
-2. **Install Dependencies**
-   Run Composer to install the required libraries:
+2. **Install Dependencies**  
+   ```bash  
+   composer install  
+   ```  
 
-   ```bash
-   composer install
-   ```
+3. **Configure Credentials**  
+   - Place `credentials.json` in the project directory.  
 
-3. **Configure the Project**
-   - Place the downloaded `credentials.json` file in the project directory.
-   - Ensure your Google Calendar is properly configured and shared with the service account email.
+---
 
-### How to Use
-To get API key you must sign-in for the first time so open Terminal
-```bash
-curl http://your-domain.com/demo.php
-```
-This will give you an auth url, click on it, sign-in with your google calendar gmail account,  After auth, you'll be redirected to a url like: http://your-domain.com/calendar.php?code=HyddgYTYTE-****-Eqv-Q&scope=https://www.googleapis.com/auth/calendar
-Copy the url code value back to your terminal and hit Enter.
+## Usage  
 
+### Authentication  
+Authenticate by opening the terminal and running:  
+```bash  
+curl http://your-domain.com/demo.php  
+```  
+Follow the provided URL, log in, and copy the `code` value from the redirected URL back into the terminal.  
 
-#### Getting Available Time Slots
+---
 
-To get the available time slots for a specific date, you can make a GET request:
+### API Endpoints  
 
-```bash
-GET http://your-domain.com/calendar.php?date=YYYY-MM-DD
-```
+#### Fetch Available Time Slots  
+```bash  
+GET http://your-domain.com/calendar.php?date=YYYY-MM-DD  
+```  
 
-#### Booking an Appointment
+#### Create an Appointment  
+```bash  
+POST http://your-domain.com/calendar.php  
+Content-Type: application/json  
 
-To create an event on Google Calendar, send a POST request with the appointment details:
+{  
+  "date": "YYYY-MM-DD",  
+  "time": "HH:MM",  
+  "summary": "Appointment Title",  
+  "description": "Details of the appointment"  
+}  
+```  
 
-```bash
-POST http://your-domain.com/calendar.php
-Content-Type: application/json
+---
 
-{
-  "date": "YYYY-MM-DD",
-  "time": "HH:MM",
-  "summary": "Appointment Summary",
-  "description": "Appointment Description"
-}
-```
+### Examples  
 
-This will create an event on your Google Calendar at the specified time and date.
+1. **Get Time Slots**  
+   ```bash  
+   curl -X GET "http://your-domain.com/calendar.php?date=2025-01-08"  
+   ```  
+   Response:  
+   ```json  
+   {  
+     "availableTimeSlots": ["09:00", "13:00", "14:00"],  
+     "bookedTimeSlots": ["10:00", "11:00"]  
+   }  
+   ```  
 
-### Example Usage
+2. **Book an Appointment**  
+   ```bash  
+   curl -X POST "http://your-domain.com/calendar.php" -H "Content-Type: application/json" -d '{  
+     "date": "2025-01-08",  
+     "time": "14:00",  
+     "summary": "Team Meeting",  
+     "description": "Quarterly updates"  
+   }'  
+   ```  
+   Response:  
+   ```json  
+   {  
+     "success": true,  
+     "eventLink": "https://www.google.com/calendar/event?eid=abc123"  
+   }  
+   ```  
 
-1. **Get Available Time Slots for a Specific Date**
+---
 
-   ```bash
-   curl -X GET "http://your-domain.com/calendar.php?date=2025-01-08"
-   ```
+## Notes  
+- Ensure proper calendar sharing and API configurations.  
+- Update time slots as needed in the source code.  
 
-   **Response:**
-
-   ```json
-   {
-     "availableTimeSlots": ["09:00", "13:00", "14:00", "15:00", "16:00"],
-     "bookedTimeSlots": ["10:00", "11:00", "12:00"]
-   }
-   ```
-
-2. **Create an Appointment**
-
-   ```bash
-   curl -X POST "http://your-domain.com/calendar.php" -H "Content-Type: application/json" -d '{
-     "date": "2025-01-08",
-     "time": "14:00",
-     "summary": "Doctor Appointment",
-     "description": "Annual check-up"
-   }'
-   ```
-
-   **Response:**
-
-   ```json
-   {
-     "success": true,
-     "eventLink": "https://www.google.com/calendar/event?eid=abc123"
-   }
-   ```
-
-### Notes
-- Ensure that your Google Calendar is set up with the proper OAuth credentials.
-- Make sure the calendar is shared with the appropriate users and service accounts.
-- You can modify the available time slots in the code as needed.
-
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+## License  
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).  

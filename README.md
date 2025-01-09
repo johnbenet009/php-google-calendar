@@ -81,6 +81,12 @@ This PHP project allows you to book and read appointments from Google Calendar. 
    - Ensure your Google Calendar is properly configured and shared with the service account email.
 
 ### How to Use
+To get API key you must sign-in for the first time so open Terminal
+```bash
+curl http://your-domain.com/demo.php
+```
+This will give you an auth url, click on it, sign-in with your google calendar gmail account, copy the response code back to the terminal and hit Enter
+
 
 #### Getting Available Time Slots
 
